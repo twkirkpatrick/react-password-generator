@@ -62,24 +62,29 @@ function App() {
     const number = "123456789";
     const symbol = "!@#$%^&*()+";
 
+    let userSelection = "";
     let generatedPassword = "";
 
-    for (let i = 0; i < passwordLength; i++) {
-      if (uppercase) {
-        generatedPassword += upper[Math.floor(Math.random() * upper.length)];
-      }
-      if (lowercase) {
-        generatedPassword += lower[Math.floor(Math.random() * lower.length)];
-      }
-      if (numbers) {
-        generatedPassword += number[Math.floor(Math.random() * number.length)];
-      }
-      if (symbols) {
-        generatedPassword += symbol[Math.floor(Math.random() * symbol.length)];
-      }
+    if (uppercase) {
+      userSelection += upper;
+    }
+    if (lowercase) {
+      userSelection += lower;
+    }
+    if (numbers) {
+      userSelection += number;
+    }
+    if (symbols) {
+      userSelection += symbol;
     }
 
-    setPassword(generatedPassword.substring(0, passwordLength));
+    for (let i = 0; i < passwordLength; i++) {
+      generatedPassword += userSelection.charAt(
+        Math.floor(Math.random() * userSelection.length)
+      );
+    }
+
+    setPassword(generatedPassword);
   };
 
   return (
@@ -108,6 +113,7 @@ function App() {
               isDisabled={true}
               variant="filled"
               value={password}
+              style={{ textAlign: "center" }}
             />
             <InputRightAddon
               children={
