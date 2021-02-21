@@ -25,25 +25,18 @@ import { CopyIcon, LockIcon } from "@chakra-ui/icons";
 
 function App() {
   const toast = useToast();
-  const [passwordLength, setPasswordLength] = useState(8);
-
-  const inputRef = useRef(null);
 
   const [uppercase, setUppercase] = useState(false);
   const [lowercase, setLowercase] = useState(false);
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
 
-  const [password, setPassword] = useState("");
+  const [passwordLength, setPasswordLength] = useState(8);
 
-  console.log(uppercase);
-  console.log(lowercase);
-  console.log(numbers);
-  console.log(symbols);
+  const [password, setPassword] = useState("");
 
   const handleChange = (passwordLength) => {
     setPasswordLength(passwordLength);
-    console.log(passwordLength);
   };
 
   const copyPassword = async (password) => {
@@ -115,7 +108,6 @@ function App() {
               isDisabled={true}
               variant="filled"
               value={password}
-              ref={inputRef}
             />
             <InputRightAddon
               children={
