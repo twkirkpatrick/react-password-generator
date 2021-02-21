@@ -26,12 +26,12 @@ function App() {
   };
 
   return (
-    <Container>
-      <Grid>
-        <GridItem bg="grey" style={{ marginTop: "10rem", padding: "20px" }}>
-          <Heading as="h1" style={{ textAlign: "center" }}>
+    <Container centerContent={true}>
+      <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+        <GridItem bg="teal" style={{ marginTop: "15rem", padding: "5rem" }}>
+          <h1 style={{ textAlign: "center", fontSize: "60px" }}>
             Password Generator
-          </Heading>
+          </h1>
           <Input size="md" isDisabled={true} variant="filled" />
 
           <Slider
@@ -49,10 +49,22 @@ function App() {
           </Slider>
 
           <FormControl display="flex" alignItems="center">
+            <Switch className="switch" colorScheme="purple" />
             <FormLabel htmlFor="email-alerts" mb="0">
-              Enable email alerts?
+              Uppercase
             </FormLabel>
-            <Switch id="email-alerts" />
+            <Switch className="switch" colorScheme="purple" />
+            <FormLabel htmlFor="email-alerts" mb="0">
+              Lowercase
+            </FormLabel>
+            <Switch className="switch" colorScheme="purple" />
+            <FormLabel htmlFor="email-alerts" mb="0">
+              Numbers
+            </FormLabel>
+            <Switch className="switch" colorScheme="purple" />
+            <FormLabel htmlFor="email-alerts" mb="0">
+              Symbols
+            </FormLabel>
           </FormControl>
         </GridItem>
       </Grid>
