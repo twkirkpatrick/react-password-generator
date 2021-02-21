@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import {
   Button,
@@ -27,6 +27,8 @@ function App() {
   const toast = useToast();
   const [passwordLength, setPasswordLength] = useState(8);
 
+  const inputRef = useRef(null);
+
   const [uppercase, setUppercase] = useState(false);
   const [lowercase, setLowercase] = useState(false);
   const [numbers, setNumbers] = useState(false);
@@ -42,6 +44,19 @@ function App() {
   const handleChange = (passwordLength) => {
     setPasswordLength(passwordLength);
     console.log(passwordLength);
+  };
+
+  const copyPassword = async (password) => {
+    try {
+      await navigator.clipboard.writeText(password);
+      toast({
+        title: "Copied to clipboard",
+        duration: 2000,
+        position: "top-right"
+      });
+    } catch (err) {
+      console.error("error");
+    }
   };
 
   const generatePassword = () => {
@@ -100,17 +115,12 @@ function App() {
               isDisabled={true}
               variant="filled"
               value={password}
+              ref={inputRef}
             />
             <InputRightAddon
               children={
                 <IconButton
-                  onClick={() =>
-                    toast({
-                      title: "Copied to clipboard",
-                      duration: 2000,
-                      position: "top-right"
-                    })
-                  }
+                  onClick={() => copyPassword(password)}
                   icon={<CopyIcon />}
                 />
               }
