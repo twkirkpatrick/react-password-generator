@@ -25,10 +25,20 @@ import { CopyIcon, LockIcon } from "@chakra-ui/icons";
 
 function App() {
   const toast = useToast();
-  const [value, setValue] = useState(8);
-  const handleChange = (value) => {
-    setValue(value);
-    console.log(value);
+  const [passwordLength, setPasswordLength] = useState(8);
+  const [uppercase, setUppercase] = useState(false);
+  const [lowercase, setLowercase] = useState(false);
+  const [numbers, setNumbers] = useState(false);
+  const [symbols, setSymbols] = useState(false);
+
+  console.log(uppercase);
+  console.log(lowercase);
+  console.log(numbers);
+  console.log(symbols);
+
+  const handleChange = (passwordLength) => {
+    setPasswordLength(passwordLength);
+    console.log(passwordLength);
   };
 
   return (
@@ -72,7 +82,7 @@ function App() {
           <Slider
             min={8}
             max={50}
-            value={value}
+            value={passwordLength}
             onChange={handleChange}
             flex="1"
             focusThumbOnChange={false}
@@ -80,23 +90,43 @@ function App() {
             <SliderTrack bg="purple.100">
               <SliderFilledTrack bg="purple" />
             </SliderTrack>
-            <SliderThumb children={value} fontSize="sm" boxSize="32px" />
+            <SliderThumb
+              children={passwordLength}
+              fontSize="sm"
+              boxSize="32px"
+            />
           </Slider>
 
           <FormControl display="flex" alignItems="center">
-            <Switch className="switch" colorScheme="purple" />
+            <Switch
+              className="switch"
+              colorScheme="purple"
+              onChange={() => setUppercase(!uppercase)}
+            />
             <FormLabel htmlFor="email-alerts" mb="0">
               Uppercase
             </FormLabel>
-            <Switch className="switch" colorScheme="purple" />
+            <Switch
+              className="switch"
+              colorScheme="purple"
+              onChange={() => setLowercase(!lowercase)}
+            />
             <FormLabel htmlFor="email-alerts" mb="0">
               Lowercase
             </FormLabel>
-            <Switch className="switch" colorScheme="purple" />
+            <Switch
+              className="switch"
+              colorScheme="purple"
+              onChange={() => setNumbers(!numbers)}
+            />
             <FormLabel htmlFor="email-alerts" mb="0">
               Numbers
             </FormLabel>
-            <Switch className="switch" colorScheme="purple" />
+            <Switch
+              className="switch"
+              colorScheme="purple"
+              onChange={() => setSymbols(!symbols)}
+            />
             <FormLabel htmlFor="email-alerts" mb="0">
               Symbols
             </FormLabel>
