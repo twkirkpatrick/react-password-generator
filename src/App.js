@@ -16,13 +16,15 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  useToast,
   Box,
   MdGraphicEq
 } from "@chakra-ui/react";
 
-import { CopyIcon } from "@chakra-ui/icons";
+import { CopyIcon, LockIcon } from "@chakra-ui/icons";
 
 function App() {
+  const toast = useToast();
   const [value, setValue] = useState(8);
   const handleChange = (value) => {
     setValue(value);
@@ -32,25 +34,51 @@ function App() {
   return (
     <Container centerContent={true}>
       <Grid templateColumns="repeat(3, 1fr)" gap={1}>
-        <GridItem bg="teal" style={{ marginTop: "15rem", padding: "3rem" }}>
-          <h1 style={{ textAlign: "center", fontSize: "60px" }}>
-            Password Generator
+        <GridItem
+          style={{
+            backgroundColor: "teal",
+            marginTop: "15rem",
+            padding: "3rem",
+            borderRadius: "0.5rem"
+          }}
+        >
+          <h1
+            style={{
+              textAlign: "center",
+              fontSize: "60px",
+              color: "black"
+            }}
+          >
+            Password <LockIcon w={5} h={5} /> Generator
           </h1>
-          <InputGroup>
+          <InputGroup style={{ marginBottom: "1rem" }}>
             <Input size="md" isDisabled={true} variant="filled" value={"hi"} />
-            <InputRightAddon children={<IconButton icon={<CopyIcon />} />} />
+            <InputRightAddon
+              children={
+                <IconButton
+                  onClick={() =>
+                    toast({
+                      title: "Copied to clipboard",
+                      duration: 2000,
+                      position: "top-right"
+                    })
+                  }
+                  icon={<CopyIcon />}
+                />
+              }
+            />
           </InputGroup>
 
           <Slider
             min={8}
-            max={100}
+            max={50}
             value={value}
             onChange={handleChange}
             flex="1"
             focusThumbOnChange={false}
           >
-            <SliderTrack bg="red.100">
-              <SliderFilledTrack bg="tomato" />
+            <SliderTrack bg="purple.100">
+              <SliderFilledTrack bg="purple" />
             </SliderTrack>
             <SliderThumb children={value} fontSize="sm" boxSize="32px" />
           </Slider>
