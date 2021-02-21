@@ -26,10 +26,13 @@ import { CopyIcon, LockIcon } from "@chakra-ui/icons";
 function App() {
   const toast = useToast();
   const [passwordLength, setPasswordLength] = useState(8);
+
   const [uppercase, setUppercase] = useState(false);
   const [lowercase, setLowercase] = useState(false);
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
+
+  const [password, setPassword] = useState("");
 
   console.log(uppercase);
   console.log(lowercase);
@@ -39,6 +42,36 @@ function App() {
   const handleChange = (passwordLength) => {
     setPasswordLength(passwordLength);
     console.log(passwordLength);
+  };
+
+  const generatePassword = () => {
+    if (!uppercase && !lowercase && !numbers && !symbols) {
+      alert("Please select at least one character type");
+    }
+
+    const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lower = "abcdefghijqlmnopqrstuvwxyz";
+    const number = "123456789";
+    const symbol = "!@#$%^&*()+";
+
+    let generatedPassword = "";
+
+    for (let i = 0; i < passwordLength; i++) {
+      if (uppercase) {
+        generatedPassword += upper[Math.floor(Math.random() * upper.length)];
+      }
+      if (lowercase) {
+        generatedPassword += lower[Math.floor(Math.random() * lower.length)];
+      }
+      if (numbers) {
+        generatedPassword += number[Math.floor(Math.random() * number.length)];
+      }
+      if (symbols) {
+        generatedPassword += symbol[Math.floor(Math.random() * symbol.length)];
+      }
+    }
+
+    setPassword(generatedPassword.substring(0, passwordLength));
   };
 
   return (
@@ -62,7 +95,12 @@ function App() {
             Password <LockIcon w={5} h={5} /> Generator
           </h1>
           <InputGroup style={{ marginBottom: "1rem" }}>
-            <Input size="md" isDisabled={true} variant="filled" value={"hi"} />
+            <Input
+              size="md"
+              isDisabled={true}
+              variant="filled"
+              value={password}
+            />
             <InputRightAddon
               children={
                 <IconButton
@@ -103,7 +141,7 @@ function App() {
               colorScheme="purple"
               onChange={() => setUppercase(!uppercase)}
             />
-            <FormLabel htmlFor="email-alerts" mb="0">
+            <FormLabel htmlFor="uppercase" mb="0">
               Uppercase
             </FormLabel>
             <Switch
@@ -111,7 +149,7 @@ function App() {
               colorScheme="purple"
               onChange={() => setLowercase(!lowercase)}
             />
-            <FormLabel htmlFor="email-alerts" mb="0">
+            <FormLabel htmlFor="lowercase" mb="0">
               Lowercase
             </FormLabel>
             <Switch
@@ -119,7 +157,7 @@ function App() {
               colorScheme="purple"
               onChange={() => setNumbers(!numbers)}
             />
-            <FormLabel htmlFor="email-alerts" mb="0">
+            <FormLabel htmlFor="numbers" mb="0">
               Numbers
             </FormLabel>
             <Switch
@@ -127,7 +165,7 @@ function App() {
               colorScheme="purple"
               onChange={() => setSymbols(!symbols)}
             />
-            <FormLabel htmlFor="email-alerts" mb="0">
+            <FormLabel htmlFor="symbols" mb="0">
               Symbols
             </FormLabel>
           </FormControl>
@@ -138,6 +176,7 @@ function App() {
               variant="solid"
               colorScheme="whiteAlpha"
               size="lg"
+              onClick={generatePassword}
             >
               Generate
             </Button>
