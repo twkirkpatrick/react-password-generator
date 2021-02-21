@@ -24,7 +24,7 @@ If you would like to use the application in your local environment:
 
 1. Clone the repo
 2. Install required dependencies by running command `npm i`
-3. Run command `npm start` to get launch the development server
+3. Run command `npm start` to launch the development server
 
 Otherwise, visit the deployed application <a href = "https://react-passwordgen.netlify.app/">here</a>
 
