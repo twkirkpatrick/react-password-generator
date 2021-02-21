@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./App.css";
 import {
   Button,
@@ -45,7 +45,8 @@ function App() {
       toast({
         title: "Copied to clipboard",
         duration: 2000,
-        position: "top-right"
+        position: "top-right",
+        status: "success"
       });
     } catch (err) {
       console.error("error");
@@ -101,8 +102,10 @@ function App() {
           <h1
             style={{
               textAlign: "center",
-              fontSize: "60px",
-              color: "black"
+              fontSize: "40px",
+              fontWeight: "500",
+              color: "black",
+              marginBottom: "5px"
             }}
           >
             Password <LockIcon w={5} h={5} /> Generator
@@ -134,7 +137,7 @@ function App() {
             focusThumbOnChange={false}
           >
             <SliderTrack bg="purple.100">
-              <SliderFilledTrack bg="purple" />
+              <SliderFilledTrack bg="#805AD5" />
             </SliderTrack>
             <SliderThumb
               children={passwordLength}
@@ -186,7 +189,7 @@ function App() {
               size="lg"
               onClick={generatePassword}
             >
-              Generate
+              GENERATE
             </Button>
           }
         </GridItem>
