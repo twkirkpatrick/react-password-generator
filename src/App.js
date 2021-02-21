@@ -4,8 +4,10 @@ import {
   Button,
   Container,
   Grid,
+  IconButton,
+  InputRightAddon,
   GridItem,
-  Heading,
+  InputGroup,
   Input,
   Switch,
   FormControl,
@@ -18,6 +20,8 @@ import {
   MdGraphicEq
 } from "@chakra-ui/react";
 
+import { CopyIcon } from "@chakra-ui/icons";
+
 function App() {
   const [value, setValue] = useState(8);
   const handleChange = (value) => {
@@ -28,11 +32,14 @@ function App() {
   return (
     <Container centerContent={true}>
       <Grid templateColumns="repeat(3, 1fr)" gap={1}>
-        <GridItem bg="teal" style={{ marginTop: "15rem", padding: "5rem" }}>
+        <GridItem bg="teal" style={{ marginTop: "15rem", padding: "3rem" }}>
           <h1 style={{ textAlign: "center", fontSize: "60px" }}>
             Password Generator
           </h1>
-          <Input size="md" isDisabled={true} variant="filled" />
+          <InputGroup>
+            <Input size="md" isDisabled={true} variant="filled" value={"hi"} />
+            <InputRightAddon children={<IconButton icon={<CopyIcon />} />} />
+          </InputGroup>
 
           <Slider
             min={8}
@@ -66,6 +73,17 @@ function App() {
               Symbols
             </FormLabel>
           </FormControl>
+          {
+            <Button
+              className="button"
+              isFullWidth
+              variant="solid"
+              colorScheme="whiteAlpha"
+              size="lg"
+            >
+              Generate
+            </Button>
+          }
         </GridItem>
       </Grid>
     </Container>

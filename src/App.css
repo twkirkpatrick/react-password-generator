@@ -8,3 +8,11 @@ body {
 .switch {
   margin-right: 10px;
 }
+
+.button {
+  margin-top: 1rem;
+  font-size: 30px !important;
+  color: black !important;
+  font-weight: 400 !important;
+  border: 1px solid darkgrey;
+}
